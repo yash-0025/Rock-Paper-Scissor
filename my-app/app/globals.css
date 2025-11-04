@@ -1,26 +1,89 @@
+/* client/app/globals.css */
 @import "tailwindcss";
 
+/* 1. Define the base color palette variables */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  /* Light Mode Palette (Default) */
+  --background: #f1f5f9; /* slate-100 */
+  --foreground: #0f172a; /* slate-900 */
+  
+  --surface-light: #ffffff; /* white */
+  --surface-medium: #e2e8f0; /* slate-200 */
+  --surface-dark: #cbd5e1; /* slate-300 */
+  
+  /* Accent Colors */
+  --accent-DEFAULT: #4f46e5; /* indigo-600 */
+  --accent-light: #6366f1; /* indigo-500 */
+  --accent-dark: #4338ca; /* indigo-700 */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Player & Action Colors */
+  --player-color: #2563eb; /* blue-600 */
+  --opponent-color: #e11d48; /* rose-600 */
+  --warning-color: #f59e0b; /* amber-500 */
+  --danger-color: #dc2626; /* red-600 */
 }
 
 @media (prefers-color-scheme: dark) {
+  /* Dark Mode Palette */
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0f172a; /* slate-900 */
+    --foreground: #f1f5f9; /* slate-100 */
+    
+    --surface-light: #1e293b; /* slate-800 */
+    --surface-medium: #334155; /* slate-700 */
+    --surface-dark: #475569; /* slate-600 */
+
+    /* Accent Colors */
+    --accent-DEFAULT: #6366f1; /* indigo-500 */
+    --accent-light: #818cf8; /* indigo-400 */
+    --accent-dark: #4f46e5; /* indigo-600 */
+
+    /* Player & Action Colors */
+    --player-color: #60a5fa; /* blue-400 */
+    --opponent-color: #fb7185; /* rose-400 */
+    --warning-color: #fcd34d; /* amber-300 */
+    --danger-color: #f87171; /* red-400 */
   }
 }
 
+/* 2. Apply base styles */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+}
+
+/* 3. Add custom component styles (like inputs) */
+input[type="text"],
+input[type="password"] {
+  @apply w-full p-3 rounded-lg placeholder-slate-500;
+  background: var(--surface-light);
+  color: var(--foreground);
+  border: 1px solid var(--surface-medium);
+}
+input[type="text"]:focus,
+input[type="password"]:focus {
+  @apply outline-none ring-2;
+  ring-color: var(--accent-DEFAULT);
+  border-color: var(--accent-DEFAULT);
+}
+
+
+/* 4. Extend Tailwind's theme using @theme */
+@theme inline {
+  /* You can add your --font-geist-sans here if you set it up */
+  /* --font-sans: var(--font-geist-sans); */
+  
+  --color-accent: var(--accent-DEFAULT);
+  --color-accent-light: var(--accent-light);
+  --color-accent-dark: var(--accent-dark);
+
+  --color-player: var(--player-color);
+  --color-opponent: var(--opponent-color);
+  --color-warning: var(--warning-color);
+  --color-danger: var(--danger-color);
+  
+  --color-surface-light: var(--surface-light);
+  --color-surface-medium: var(--surface-medium);
+  --color-surface-dark: var(--surface-dark);
 }
